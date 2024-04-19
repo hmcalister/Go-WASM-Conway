@@ -31,7 +31,7 @@ func (g *Game) Update() error {
 	if inpututil.KeyPressDuration(ebiten.KeyLeft) > 0 {
 		g.currentTPS -= 2
 		if g.currentTPS < 0 {
-			g.currentTPS = 0
+			g.currentTPS = 2
 		}
 		ebiten.SetTPS(g.currentTPS)
 	}
