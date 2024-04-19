@@ -20,6 +20,30 @@ type Game struct {
 }
 
 func (g *Game) Update() error {
+	if inpututil.IsKeyJustPressed(ebiten.KeyR) {
+		g.board.RandomizeBoard()
+	}
+
+	if inpututil.IsKeyJustPressed(ebiten.KeySpace) {
+		g.board.TogglePause()
+	}
+
+	if inpututil.KeyPressDuration(ebiten.KeyLeft) > 0 {
+		g.currentTPS -= 2
+		if g.currentTPS < 0 {
+			g.currentTPS = 0
+		}
+		ebiten.SetTPS(g.currentTPS)
+	}
+
+	if inpututil.KeyPressDuration(ebiten.KeyRight) > 0 {
+		g.currentTPS += 2
+		if g.currentTPS > 256 {
+			g.currentTPS = 256
+		}
+		ebiten.SetTPS(g.currentTPS)
+	}
+
 	g.board.NextState()
 	return nil
 }
