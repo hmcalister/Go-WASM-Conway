@@ -27,7 +27,9 @@ type Game struct {
 }
 
 func (g *Game) Update() error {
-	if inpututil.IsKeyJustPressed(ebiten.KeyR) {
+
+	touchIDs := inpututil.AppendJustPressedTouchIDs(nil)
+	if inpututil.IsKeyJustPressed(ebiten.KeyR) || len(touchIDs) > 0 {
 		g.board.RandomizeBoard()
 	}
 
