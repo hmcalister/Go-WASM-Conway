@@ -35,20 +35,19 @@ func (g *Game) Update() error {
 		g.board.TogglePause()
 	}
 
-	if inpututil.KeyPressDuration(ebiten.KeyLeft) > 0 {
-		g.currentTPS -= 2
-		if g.currentTPS <= 0 {
-			g.currentTPS = 2
+	if inpututil.IsKeyJustPressed(ebiten.KeyLeft) {
+		g.updatePeriodIndex += 1
+		if g.updatePeriodIndex >= len(UPDATE_PERIODS) {
+			g.updatePeriodIndex = len(UPDATE_PERIODS) - 1
 		}
-		ebiten.SetTPS(g.currentTPS)
 	}
 
-	if inpututil.KeyPressDuration(ebiten.KeyRight) > 0 {
-		g.currentTPS += 2
-		if g.currentTPS > 256 {
-			g.currentTPS = 256
+	if inpututil.IsKeyJustPressed(ebiten.KeyRight) {
+		g.updatePeriodIndex -= 1
+		if g.updatePeriodIndex < 0 {
+			g.updatePeriodIndex = 0
 		}
-		ebiten.SetTPS(g.currentTPS)
+
 	}
 
 	g.board.NextState()
