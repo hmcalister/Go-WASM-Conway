@@ -13,6 +13,10 @@ const (
 	GAME_HEIGHT = 256
 )
 
+var (
+	UPDATE_PERIODS []int = []int{1, 2, 4, 8, 16, 32}
+)
+
 type Game struct {
 	board      *conway.Board
 	pixels     []byte
