@@ -79,9 +79,10 @@ func main() {
 	conwayBoard.RandomizeBoard()
 
 	game := &Game{
-		board:      conwayBoard,
-		currentTPS: 16,
+		board:             conwayBoard,
 		pixels:            make([]byte, 4*GAME_WIDTH*GAME_HEIGHT),
+		gameTPS:           ebiten.TPS(),
+		updatePeriodIndex: 2,
 	}
 
 	ebiten.SetWindowSize(2*GAME_WIDTH, 2*GAME_HEIGHT)
