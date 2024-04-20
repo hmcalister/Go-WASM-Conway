@@ -9,8 +9,8 @@ import (
 )
 
 const (
-	SCREEN_WIDTH  = 256
-	SCREEN_HEIGHT = 256
+	GAME_WIDTH  = 256
+	GAME_HEIGHT = 256
 )
 
 type Game struct {
@@ -54,11 +54,11 @@ func (g *Game) Draw(screen *ebiten.Image) {
 }
 
 func (g *Game) Layout(outsideWidth, outsideHeight int) (int, int) {
-	return SCREEN_WIDTH, SCREEN_HEIGHT
+	return GAME_WIDTH, GAME_HEIGHT
 }
 
 func main() {
-	conwayBoard, err := conway.NewBoard(SCREEN_WIDTH, SCREEN_HEIGHT)
+	conwayBoard, err := conway.NewBoard(GAME_WIDTH, GAME_HEIGHT)
 	if err != nil {
 		log.Fatalf("error during creating board state %v", err.Error())
 	}
@@ -66,11 +66,11 @@ func main() {
 
 	game := &Game{
 		board:      conwayBoard,
-		pixels:     make([]byte, 4*SCREEN_WIDTH*SCREEN_HEIGHT),
 		currentTPS: 16,
+		pixels:            make([]byte, 4*GAME_WIDTH*GAME_HEIGHT),
 	}
 
-	ebiten.SetWindowSize(2*SCREEN_WIDTH, 2*SCREEN_HEIGHT)
+	ebiten.SetWindowSize(2*GAME_WIDTH, 2*GAME_HEIGHT)
 	ebiten.SetWindowTitle("Conway's Game Of Life")
 	ebiten.SetTPS(game.currentTPS)
 	if err := ebiten.RunGame(game); err != nil {
