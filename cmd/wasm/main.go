@@ -18,9 +18,12 @@ var (
 )
 
 type Game struct {
-	board      *conway.Board
-	pixels     []byte
-	currentTPS int
+	board  *conway.Board
+	pixels []byte
+
+	gameTPS           int
+	updatePeriodIndex int
+	updateCounter     int
 }
 
 func (g *Game) Update() error {
