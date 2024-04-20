@@ -87,7 +87,6 @@ func main() {
 
 	ebiten.SetWindowSize(2*GAME_WIDTH, 2*GAME_HEIGHT)
 	ebiten.SetWindowTitle("Conway's Game Of Life")
-	ebiten.SetTPS(game.currentTPS)
 	if err := ebiten.RunGame(game); err != nil {
 		log.Fatalf("error during run Conway %v", err.Error())
 	}
