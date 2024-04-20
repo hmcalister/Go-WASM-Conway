@@ -51,6 +51,9 @@ func (g *Game) Update() error {
 func (g *Game) Draw(screen *ebiten.Image) {
 	g.board.Draw(g.pixels)
 	screen.WritePixels(g.pixels)
+
+	// tpsMsg := fmt.Sprintf("TPS: %0.2f", ebiten.ActualTPS())
+	// ebitenutil.DebugPrint(screen, tpsMsg)
 }
 
 func (g *Game) Layout(outsideWidth, outsideHeight int) (int, int) {
