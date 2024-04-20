@@ -54,7 +54,6 @@ func (g *Game) Update() error {
 
 	g.updateCounter += 1
 	if g.updateCounter >= UPDATE_PERIODS[g.updatePeriodIndex] {
-		log.Printf("UPDATE %v / %v", g.updateCounter, UPDATE_PERIODS[g.updatePeriodIndex])
 		g.updateCounter = 0
 		g.board.NextState()
 	}
